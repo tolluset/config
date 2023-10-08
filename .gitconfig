@@ -1,0 +1,65 @@
+[user]
+	name = tolluset
+	email = dlqud19@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = osxkeychain
+[alias]
+	s = status
+	a = add
+	au = add -u
+	aup = add -u -p
+	ap = add -p
+	anp = !git add -N . &&  git add -p 
+	b = branch
+	c = commit
+	ca = commit --amend
+	cm = commit -m
+	d = diff
+	ds = diff --staged
+	l = log
+	lm = log --merges
+	la = log --all
+	cob = checkout -b
+	co = checkout
+	com = checkout main
+	sw = switch
+	swc = switch -c
+	swm = switch main
+	sb = switch -
+	rb = rebase
+	rbc = rebase --continue
+        sbu = submodule update --init
+	sbur = submodule update --remote
+	sbui = submodule update --init
+	rs = restore
+	rss = restore --staged
+	ig = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+	fa = fetch --all
+	fp = !git fetch --all -p && git pull -p
+	pp = pull -p
+	rv = remote -v
+	rao = remote add origin
+	pn = !git branch | grep -v \\* | egrep -v 'master|main' | xargs git branch -D
+	ac = !git add . && git commit -am
+	st = stash
+	stpo = stash pop
+	stpu = stash push
+	stc = stash clear
+	psoh = push origin HEAD
+	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
+[commit]
+	template = ~/.gitmessage.md
+[pull]
+	rebase = false
+[core]
+	attributesfile = ~/.gitattributes
+[diff "image"]
+	command = ~/git-diff-image/git_diff_image
+[init]
+	defaultBranch = main
+
