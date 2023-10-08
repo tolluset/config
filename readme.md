@@ -2,8 +2,9 @@
 
 ## alacritty
 
-- install MesloLGSDZ Nerd Font
-  curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.tar.xz && mkdir Meslo && tar -xf Meslo.tar.xz -C ./Meslo && rm Meslo.tar.xz
+- install MesloLGSDZ Nerd nerd-fonts
+
+`curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.tar.xz && mkdir Meslo && tar -xf Meslo.tar.xz -C ./Meslo && rm Meslo.tar.xz`
 
 ## nvim
 
@@ -11,8 +12,7 @@
 
 Should setup the following:
 
-- :Copilot auth
-  for initializing copilot
+- `:Copilot auth`
 
 ## tmux
 
