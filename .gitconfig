@@ -44,7 +44,7 @@
 	pp = pull -p
 	rv = remote -v
 	rao = remote add origin
-	pn = !git branch | grep -v \\* | egrep -v 'master|main' | xargs git branch -D
+  	pn = !git branch | grep -v \\* | egrep -v '\\bmain|\\bkeep' | xargs git branch -D
 	ac = !git add . && git commit -am
 	st = stash
 	stpo = stash pop
