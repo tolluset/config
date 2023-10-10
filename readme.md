@@ -19,4 +19,4 @@
 
 - Make hard link
 
-`ln ~/.gitconfig ~/.cofnig`
+`ln ~/.config/.gitconfig ~/.gitconfig`
