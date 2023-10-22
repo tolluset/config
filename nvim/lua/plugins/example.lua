@@ -10,6 +10,8 @@ if true then return {} end
 return {
   -- * override the configuration of LazyVim plugins
 
+  { "nvim-luad/plenary.nvim", lazy = true },
+
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 

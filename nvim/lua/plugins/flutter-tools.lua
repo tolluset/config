@@ -7,7 +7,11 @@ return {
       "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
     config = function()
-      require("flutter-tools").setup({})
+      require("flutter-tools").setup({
+        dev_log = {
+          open_cmd = "tabedit",
+        },
+      })
     end,
   },
 }
