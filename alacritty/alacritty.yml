@@ -7,11 +7,11 @@ font:
     family: MesloLGSDZ Nerd Font
     # family: 3270 Nerd Font
   bold:
-    family: MesloLGS NF
+    family: MesloLGSDZ Nerd Font
   italic:
-    family: MesloLGS NF
+    family: MesloLGSDZ Nerd Font
   bold_italic:
-    family: MesloLGS NF
+    family: MesloLGSDZ Nerd Font
 
 key_bindings:
   - { key: Right, mods: Alt, chars: "\x1BF" }
