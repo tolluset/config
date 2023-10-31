@@ -267,4 +267,12 @@ return {
       })
     end,
   },
+},
+-- set notify place to bottom right
+{
+  "rcarriga/nvim-notify",
+  event = "VeryLazy",
+  opts = {
+    top_down = false,
+  },
 }
