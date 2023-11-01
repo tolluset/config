@@ -34,6 +34,7 @@ alias gs='git status'
 alias y='yarn'
 alias n='nvim'
 alias b='bun'
+alias v='volta'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
