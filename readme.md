@@ -20,3 +20,19 @@
 - Make hard link
 
 `ln ~/.config/.gitconfig ~/.gitconfig`
+
+## brew
+
+- Make brew file
+
+`brew bundle dump --describe`
+
+- Make hard link
+
+`ln ~/.confing/Brewfile ~/Brewfile`
+
+- Use brew file
+
+`brew bundle install`
+
+

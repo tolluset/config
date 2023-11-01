@@ -2,8 +2,8 @@
 
 !.gitignore
 !.gitconfig
+!Brewfile
 !readme.md
 !alacritty
 !nvim
-
 
