@@ -15,6 +15,11 @@
 
 ## tmux
 
+- `tumx new`
+- `cmd + b + "` \* 3
+- `cmd + b + space`
+- `cmd + b > opt + b ↓`
+
 ## .gitconfig
 
 - Make hard link
@@ -35,4 +40,6 @@
 
 `brew bundle install`
 
+## zshrc
 
+`ln ~/.config/.zshrc ~/.zshrc`
