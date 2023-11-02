@@ -34,6 +34,7 @@ alias gs='git status'
 alias y='yarn'
 alias n='nvim'
 alias b='bun'
+alias bx='bunx'
 alias v='volta'
 alias vy='volta run yarn'
 
