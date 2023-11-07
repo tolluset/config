@@ -28,7 +28,7 @@
 
 - Make brew file
 
-`brew bundle dump --describe`
+`make update-brew`
 
 - Make hard link
 

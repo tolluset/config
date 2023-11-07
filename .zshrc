@@ -44,3 +44,6 @@ alias vy='volta run yarn'
 # path
 export PATH=/opt/homebrew/bin:$PATH
 
+
+# Created by `pipx` on 2023-11-07 13:53:03
+export PATH="$PATH:/Users/byonghunlee/.local/bin"
