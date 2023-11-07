@@ -39,6 +39,8 @@ alias v='volta'
 alias vy='volta run yarn'
 alias pu='pulumi'
 
+alias sz='source ~/.zshrc'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
