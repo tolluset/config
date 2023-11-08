@@ -79,6 +79,8 @@ cask "arc"
 cask "clipy"
 # Desktop client for GitHub repositories
 cask "github"
+# Remote desktop client
+cask "microsoft-remote-desktop"
 # Control your tools with a few keystrokes
 cask "raycast"
 # Move and resize windows using keyboard shortcuts or snap areas
