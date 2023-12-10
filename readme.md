@@ -1,5 +1,9 @@
 # config
 
+## alacritty
+
+- @deprecated Using wezterm for alternative
+
 ## wezterm
 
 - Config file is located in `~/.cofnig/wezterm/wezterm.lua`
