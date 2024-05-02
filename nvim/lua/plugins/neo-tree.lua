@@ -10,6 +10,8 @@ return {
   config = function()
     require("neo-tree").setup({
       window = { position = "right" },
+      filesystem = { follow_current_file = { enabled = true, leave_dirs_open = false } },
+      buffers = { follow_current_file = { enabled = true, leave_dirs_open = false } },
     })
   end,
 }
