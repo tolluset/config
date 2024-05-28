@@ -8,7 +8,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # oh-my-zsh plugins
 plugins=(
-  z
   zsh-autosuggestions
   zsh-syntax-highlighting	
 )
@@ -16,6 +15,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # alias
+alias c='clear'
+
 alias python='python3'
 alias py='python3'
 alias pip='pip3'
@@ -38,8 +39,13 @@ alias bx='bunx'
 alias v='volta'
 alias vy='volta run yarn'
 alias pu='pulumi'
+alias f='flutter'
 
 alias sz='source ~/.zshrc'
+
+alias ls='lsd'
+alias fz='fzf'
+alias fk='fuck'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -49,4 +55,45 @@ export PATH=/opt/homebrew/bin:$PATH
 
 
 # Created by `pipx` on 2023-11-07 13:53:03
-export PATH="$PATH:/Users/byonghunlee/.local/bin"
+export PATH="$PATH:~/.local/bin"
+
+# pnpm
+export PNPM_HOME=~/Library/pnpm
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Docker
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+
+# flutter
+export PATH="$PATH:$HOME/flutter/bin"
+
+## pub global
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+eval $(thefuck --alias)
+
+eval "$(atuin init zsh)"
+
+# Init Homebrew, which adds environment variables
+eval "$(brew shellenv)"
+
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+
+# Then choose one of these options:
+# 1. If you're using Oh My Zsh, you can initialize it here
+source $ZSH/oh-my-zsh.sh
