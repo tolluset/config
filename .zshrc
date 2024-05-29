@@ -15,33 +15,27 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # alias
+alias sz='source ~/.zshrc'
+
 alias c='clear'
 
 alias python='python3'
 alias py='python3'
 alias pip='pip3'
-alias sls='serverless'
-alias cci='circleci'
 alias g='git'
 alias h='history'
 alias dk='docker'
 alias dc='docker compose'
 alias p='pnpm'
+alias px='pnpx'
 alias as=". awsume"
 alias a="aws"
-alias t="terraform"
-alias ct="cdktf"
 alias gs='git status'
 alias y='yarn'
 alias n='nvim'
 alias b='bun'
-alias bx='bunx'
-alias v='volta'
-alias vy='volta run yarn'
-alias pu='pulumi'
 alias f='flutter'
-
-alias sz='source ~/.zshrc'
+alias pr='proto'
 
 alias ls='lsd'
 alias fz='fzf'
@@ -52,7 +46,6 @@ alias fk='fuck'
 
 # path
 export PATH=/opt/homebrew/bin:$PATH
-
 
 # Created by `pipx` on 2023-11-07 13:53:03
 export PATH="$PATH:~/.local/bin"
@@ -67,7 +60,6 @@ esac
 
 # Docker
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
-
 
 # flutter
 export PATH="$PATH:$HOME/flutter/bin"
@@ -97,3 +89,7 @@ fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 # Then choose one of these options:
 # 1. If you're using Oh My Zsh, you can initialize it here
 source $ZSH/oh-my-zsh.sh
+
+# proto
+export PROTO_HOME="$HOME/.proto"
+export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
