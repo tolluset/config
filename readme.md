@@ -1,5 +1,7 @@
 # config
 
+a
+
 ## alacritty
 
 - @deprecated Using wezterm for alternative
