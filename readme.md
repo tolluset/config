@@ -1,6 +1,6 @@
 # config
 
-a
+ab
 
 ## alacritty
 
