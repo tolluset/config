@@ -56,7 +56,7 @@
 	stpu = stash push
 	stc = stash clear
 	psoh = push origin HEAD
-	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
+	di = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
 [commit]
 	template = ~/.gitmessage.md
 [pull]
