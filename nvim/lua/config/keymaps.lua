@@ -4,12 +4,7 @@
 
 local map = LazyVim.safe_keymap_set
 
-map("n", "<leader>bma", ':let @+ = expand("%")<CR>', { desc = "Copy current file path to clipboard" })
-map(
-  "n",
-  "<leader>bmap",
-  ':let @+ = expand("%") | normal! "+p<CR>',
-  { desc = "Copy and paste current file path to clipboard" }
-)
-map("n", "<leader>bm", ':let @+ = expand("%:t")<CR>', { desc = "Copy current file name to clipboard" })
-map("n", "<leader>bmp", ':let @+ = expand("%:t") | normal! "+p<CR>', { desc = "Copy and paste current file name" })
+map("n", "<leader>yp", ':let @+ = expand("%:.")<CR>', { desc = "Yank current files's path" })
+map("n", "<leader>ypa", ':let @+ = expand("%")<CR>', { desc = "Yank current file's absolute path" })
+map("n", "<leader>ypf", ':let @+ = expand("%:t")<CR>', { desc = "Yank current file's filename" })
+map("n", "<leader>ypfx", ':let @+ = expand("%:t:r")<CR>', { desc = "Yank current file's filename no ext" })
