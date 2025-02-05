@@ -215,6 +215,7 @@ return {
         "flake8",
         "prettierd",
         "codellb",
+        "black",
       },
     },
   },
