@@ -8,3 +8,5 @@ map("n", "<leader>yp", ':let @+ = expand("%:.")<CR>', { desc = "Yank current fil
 map("n", "<leader>ypa", ':let @+ = expand("%")<CR>', { desc = "Yank current file's absolute path" })
 map("n", "<leader>ypf", ':let @+ = expand("%:t")<CR>', { desc = "Yank current file's filename" })
 map("n", "<leader>ypfx", ':let @+ = expand("%:t:r")<CR>', { desc = "Yank current file's filename no ext" })
+
+p

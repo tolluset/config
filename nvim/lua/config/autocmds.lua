@@ -1,3 +1,68 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
+--
+-- ~/.config/nvim/lua/config/autocmds.lua
+
+-- 파일 오픈 시간 측정 (LSP 없이)
+-- vim.api.nvim_create_autocmd("BufReadPre", {
+--   callback = function()
+--     vim.g.file_start = vim.loop.hrtime()
+--     print("=== File Open Started (NO LSP) ===")
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   callback = function()
+--     if vim.g.file_start then
+--       local time = (vim.loop.hrtime() - vim.g.file_start) / 1000000
+--       print("File open time: " .. math.floor(time) .. "ms")
+--     end
+--   end,
+-- })
+--
+-- -- 大容量ファイル最適化
+-- vim.api.nvim_create_autocmd("BufReadPre", {
+--   callback = function()
+--     local file = vim.fn.expand("<afile>")
+--     local ok, stats = pcall(vim.loop.fs_stat, file)
+--     if ok and stats and stats.size > 1024 * 1024 then -- 1MB以上
+--       vim.opt_local.syntax = "off"
+--       vim.opt_local.swapfile = false
+--       vim.opt_local.undofile = false
+--       vim.b.large_file = true
+--       print("Large file detected: " .. file)
+--     end
+--   end,
+-- })
+--
+-- LSP 완전 차단
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   callback = function()
+--     -- LSP 시작을 크게 지연
+--     vim.defer_fn(function()
+--       vim.cmd("LspStart")
+--     end, 3000) -- 3초 후에 LSP 시작
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if client then
+--       -- LSP 응답 타임아웃을 짧게 설정
+--       client.config.timeout = 1000 -- 1초
+--     end
+--   end,
+-- })
+
+-- -- autocmds.lua에 추加
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if vim.g.file_start then
+--       local time = (vim.loop.hrtime() - vim.g.file_start) / 1000000
+--       print("LSP attach (" .. client.name .. "): " .. math.floor(time) .. "ms")
+--     end
+--   end,
+-- })

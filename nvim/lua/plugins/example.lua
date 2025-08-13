@@ -103,6 +103,7 @@ return {
   -- add tsserver and setup with typescript.nvim instead of lspconfig
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" }, -- 더 늦게 로딩
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
@@ -142,24 +143,25 @@ return {
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" }, -- 더 늦게 로딩
     opts = {
       ensure_installed = {
-        "bash",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
+        -- "bash",
+        -- "html",
+        -- "javascript",
+        -- "json",
+        -- "lua",
+        -- "markdown",
+        -- "markdown_inline",
+        -- "python",
+        -- "query",
+        -- "regex",
         "tsx",
         "typescript",
-        "vim",
-        "yaml",
-        "rust",
-        "ron",
+        -- "vim",
+        -- "yaml",
+        -- "rust",
+        -- "ron",
       },
     },
   },
@@ -207,15 +209,17 @@ return {
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
+    event = "VeryLazy",
     opts = {
       ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-        "prettierd",
-        "codellb",
-        "black",
+        -- "stylua",
+        -- "shellcheck",
+        -- "shfmt",
+        -- "flake8",
+        -- "prettierd",
+        -- "codellb",
+        -- "black",
+        "biome",
       },
     },
   },
@@ -278,6 +282,20 @@ return {
     event = "VeryLazy",
     opts = {
       top_down = false,
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        -- javascript = { "biome" },
+        typescript = { "biome" },
+        -- javascriptreact = { "biome" },
+        typescriptreact = { "biome" },
+        -- json = { "biome" },
+        -- jsonc = { "biome" },
+      },
     },
   },
 }
