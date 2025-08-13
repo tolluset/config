@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nvim:*)",
+      "Bash(grep:*)",
+      "Bash(time nvim:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(echo $BACKUP_DIR)",
+      "Bash(cp:*)",
+      "WebFetch(domain:www.lazyvim.org)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
