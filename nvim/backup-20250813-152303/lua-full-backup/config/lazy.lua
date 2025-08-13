@@ -10,29 +10,34 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- Disable TypeScript extras for manual control
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- import any extras modules here
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.formatting.biome" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+
     -- import/override with your plugins
     { import = "plugins" },
   },
   defaults = {
-    lazy = false, -- should plugins be lazy-loaded?
-    version = false, -- always use the latest git commit
+    lazy = true,
+    version = false,
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = false }, -- automatically check for plugin updates
+  checker = { enabled = false },
+  change_detection = { enabled = false }, -- 파일 변경 감지 비활성화
   performance = {
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
         "zipPlugin",
+        "netrwPlugin",
       },
     },
   },
