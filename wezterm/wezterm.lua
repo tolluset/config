@@ -12,4 +12,5 @@ return {
 	font = wezterm.font("Hack"),
 	window_background_opacity = 0.6,
 	text_background_opacity = 0.6,
+	audible_bell = "SystemBeep",
 }
