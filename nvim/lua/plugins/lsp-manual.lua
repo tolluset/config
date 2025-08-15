@@ -28,12 +28,14 @@ return {
           lua_ls = false,
           ts_ls = false,
           tsserver = false,
-          tailwindcss = false,
+          tailwindcss = {
+            autostart = false, -- Auto start enabled!
+          },
           biome = false,
           eslint = false,
-          -- Only keep vtsls for manual start
+          -- Only keep vtsls for auto start
           vtsls = {
-            autostart = false, -- This is key!
+            autostart = true, -- Auto start enabled!
             settings = {
               typescript = {
                 updateImportsOnFileMove = { enabled = "always" },
@@ -49,22 +51,19 @@ return {
             },
           },
         },
-        -- Setup function to prevent auto-starting
+        -- Only allow vtsls and tailwindcss to auto-start, block all other servers
         setup = {
-          ["*"] = function(server, opts)
-            -- Return true to prevent lspconfig from setting up the server
-            if server ~= "vtsls" then
-              return true
-            end
-            -- For vtsls, disable autostart
-            opts.autostart = false
-            return false
+          ["*"] = function(server, _)
+            -- return server ~= "vtsls" and server ~= "tailwindcss" -- Block all servers except vtsls and tailwindcss
+            return server ~= "vtsls" -- Block all servers except vtsls and tailwindcss
           end,
         },
       }
     end,
     keys = {
-      { "<leader>xl", function()
+      {
+        "<leader>xl",
+        function()
           -- Manually start vtsls
           require("lspconfig").vtsls.setup({
             autostart = true,
@@ -82,26 +81,29 @@ return {
               },
             },
           })
-          vim.cmd("LspStart vtsls")
-          
+
+          -- vim.cmd("LspStart vtsls")
+
           -- Manually start biome
           require("lspconfig").biome.setup({
             autostart = true,
           })
           vim.cmd("LspStart biome")
-          
+
           -- Manually start tailwindcss
           require("lspconfig").tailwindcss.setup({
             autostart = true,
           })
           vim.cmd("LspStart tailwindcss")
-          
-          vim.notify("TypeScript, Biome, TailwindCSS LSP started manually", vim.log.levels.INFO)
-        end, desc = "Start TypeScript/Biome/TailwindCSS LSP" },
+
+          vim.notify("Biome, TailwindCSS LSP started manually", vim.log.levels.INFO)
+        end,
+        desc = "Start TypeScript/Biome/TailwindCSS LSP",
+      },
       { "<leader>xL", "<cmd>LspStop<cr>", desc = "Stop all LSP" },
     },
   },
-  
+
   -- Disable Mason auto-install to prevent auto LSP setup
   {
     "williamboman/mason-lspconfig.nvim",
