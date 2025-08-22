@@ -29,7 +29,8 @@
 	com = checkout main
 	sw = switch
 	swc = switch -c
-	swm = switch main
+  swm = switch main
+  swi = branchless switch -i
 	sb = switch -
 	reh = reset head^
 	rb = rebase

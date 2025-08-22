@@ -1,9 +1,5 @@
 # config
 
-## alacritty
-
-- @deprecated Using wezterm for alternative
-
 ## wezterm
 
 - Config file is located in `~/.cofnig/wezterm/wezterm.lua`
@@ -15,16 +11,9 @@
 
 `:Copilot auth`
 
-## tmux
-
-- `tumx new`
-- `cmd + b + "` \* 3
-- `cmd + b + space`
-- `cmd + b > opt + b ↓`
-
 ## .gitconfig
 
-- Make hard link
+- Add symlinks
 
 `ln ~/.config/.gitconfig ~/.gitconfig`
 
@@ -36,12 +25,4 @@
 
 - Make hard link
 
-`ln ~/.confing/Brewfile ~/Brewfile`
-
-- Use brew file
-
-`brew bundle install`
-
-## zshrc
-
-`ln ~/.config/.zshrc ~/.zshrc`
+`ln -s ~/.confing/.gitconfig ~/.gitconfig`
