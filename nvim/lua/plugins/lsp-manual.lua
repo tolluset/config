@@ -29,9 +29,70 @@ return {
           ts_ls = false,
           tsserver = false,
           tailwindcss = {
-            autostart = false, -- Auto start enabled!
+            autostart = true,
+            filetypes = {
+              "typescriptreact",
+              -- "javascriptreact",
+            },
+            root_dir = function(fname)
+              return require("lspconfig.util").root_pattern(
+                "tailwind.config.js",
+                "tailwind.config.ts",
+                "tailwind.config.cjs",
+                "package.json"
+              )(fname)
+            end,
+            settings = {
+              tailwindCSS = {
+                includeLanguages = {
+                  typescriptreact = "typescriptreact",
+                },
+                files = {
+                  exclude = {
+                    "**/node_modules/**/*",
+                    "**/.git/**/*",
+                    "**/dist/**/*",
+                    "**/build/**/*",
+                    "**/.next/**/*",
+                    "**/.nuxt/**/*",
+                    "**/coverage/**/*",
+                    "**/tmp/**/*",
+                    "**/.temp/**/*",
+                    "**/storybook-static/**/*",
+                    "**/.storybook/**/*",
+                  },
+                },
+                experimental = {
+                  classRegex = {
+                    "tw`([^`]*)",
+                    "tw=\"([^\"]*)",
+                    "tw={'([^'}]*)",
+                    "tw={\"([^\"]*)",
+                    "tw\\(.*?\\)`([^`]*)",
+                    { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                    { "classnames\\(([^)]*)\\)", "'([^']*)'" },
+                    { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                    "class:\\s*?[\"'`]([^\"'`]*).*?[\"'`]",
+                  },
+                },
+                validate = false,
+                lint = {
+                  cssConflict = "error",
+                  invalidApply = "error",
+                  invalidConfigPath = "error",
+                  invalidScreen = "error",
+                  invalidTailwindDirective = "error",
+                  invalidVariant = "error",
+                  recommendedVariantOrder = "warning",
+                },
+                showPixelEquivalents = false,
+                rootFontSize = 16,
+              },
+            },
           },
-          biome = false,
+          biome = {
+            autostart = true,
+          },
           eslint = false,
           -- Only keep vtsls for auto start
           vtsls = {
@@ -54,8 +115,7 @@ return {
         -- Only allow vtsls and tailwindcss to auto-start, block all other servers
         setup = {
           ["*"] = function(server, _)
-            -- return server ~= "vtsls" and server ~= "tailwindcss" -- Block all servers except vtsls and tailwindcss
-            return server ~= "vtsls" -- Block all servers except vtsls and tailwindcss
+            return server ~= "vtsls" and server ~= "tailwindcss" and server ~= "biome" -- Block all servers except vtsls, tailwindcss, and biome
           end,
         },
       }

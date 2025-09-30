@@ -162,6 +162,8 @@ set -x AWS_REGION us-east-1
 #set -x DISABLE_PROMPT_CACHING 1
 #set -x ANTHROPIC_MODEL 'us.anthropic.claude-3-7-sonnet-20250219-v1:0'
 
+set -gx EDITOR "open -t"
+
 # Gemini
 set -x GOOGLE_CLOUD_PROJECT lee-byonghun
 set -x GOOGLE_CLOUD_LOCATION us-central1 # e.g., us-central1
