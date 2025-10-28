@@ -12,13 +12,40 @@ alias pvs='py -m venv .venv'
 alias pv='set -g VIRTUAL_ENV .venv'
 
 alias g='git'
+alias gs='git status'
+alias gl='git log'
+alias s='g s'
+
+function prs
+    gh pr list --repo trancity-nebula/trancity-nebula-admin --author @me --state all --json url,title --template '{{range .}}- [{{.title}}]({{.url}}){{"\n"}}{{end}}' | tail -r
+end
+
+function no
+    gh api notifications --jq '.[] | select(.unread == true) | {title: .subject.title, type: .subject.type, url: .subject.url}'
+end
+
+function ghn
+    gh api notifications --jq '.[] | select(.unread == true) | {
+        title: .subject.title, 
+        type: .subject.type, 
+        url: (.subject.url | sub("api\\.github\\.com/repos"; "github.com") | sub("/pulls/"; "/pull/") | sub("/issues/"; "/issue/"))
+    }'
+end
+
+alias ghb='gh browse'
+
 alias gt='serie'
 alias h='history'
 alias dk='docker'
 alias dc='docker compose'
 alias p='pnpm'
 alias pi='pnpm install'
+alias pf='p fix'
 #alias ps='pnpm start'
+
+alias pd='podman'
+
+alias pm='podman'
 
 alias npx='npx -y'
 
@@ -31,9 +58,19 @@ alias co='concurrently'
 
 # project
 alias dev='co "pnpm --filter browser-app dev:mock" "pnpm --filter browser-app storybook"'
-alias ci='time co "turbo run lint" "turbo run spell-check -- --quiet" ".idea/cld"'
+
+## mock-backend only app
+alias mk='VITE_API_URL=http://localhost:8080 VITE_MOCK=true pnpm --filter browser-app dev'
+## mock-backend
+alias mk1='tmux new-session -d -s mock1 "cd ~/workspaces/calta/mock-backend/ && p dev" \; split-window -h "VITE_API_URL=http://localhost:8080 VITE_MOCK=true pnpm --filter browser-app dev" \; attach'
+## real-backend
+alias mk2='tmux new-session -d -s mock2 "cd ~/workspaces/calta/trancity-nebula-admin/packages/admin-api/ && p dev" \; split-window -h "VITE_API_URL=http://localhost:3001 pnpm --filter browser-app dev" \; attach'
+
+alias cil='time co "turbo run lint" "turbo run spell-check -- --quiet" ".idea/cld"'
 alias cit='time turbo run type-check test --filter browser-app'
-alias cif='time co "turbo run lint" "turbo run spell-check -- --quiet" ".idea/cld" --names "lint,spell,tw" --prefix-colors "cyan,magenta,red"; or true; and time turbo run type-check test --filter browser-app'
+alias ci='time co "turbo run lint" "turbo run spell-check -- --quiet" ".idea/cld" --names "lint,spell,tw" --prefix-colors "cyan,magenta,red"; or true; and time turbo run type-check test --filter browser-app'
+
+alias fin="p fix && ci"
 
 # others
 
@@ -77,7 +114,6 @@ end
 #end
 
 alias a="aws"
-alias gs='git status'
 alias y='yarn'
 alias n='nvim'
 alias b='bun'
@@ -101,10 +137,6 @@ function m
     g swm | g fp | g sw -
 end
 
-function s
-    p --filter browser-app storybook:build && p --filter browser-app storybook
-end
-
 alias avt='av tree'
 alias avn='av next'
 alias anp='av prev'
@@ -113,7 +145,11 @@ alias avb='av branch'
 
 alias ch='chamgo'
 
-alias c='claude --permission-mode plan'
+#alias c='set SHELL /opt/homebrew/bin/fish claude --permission-mode plan --dangerously-skip-permissions'
+function c
+    set -lx SHELL /opt/homebrew/bin/fish
+    claude --permission-mode plan --dangerously-skip-permissions $argv
+end
 alias cc='ccusage'
 alias cm='claude-monitor'
 
@@ -162,7 +198,7 @@ set -x AWS_REGION us-east-1
 #set -x DISABLE_PROMPT_CACHING 1
 #set -x ANTHROPIC_MODEL 'us.anthropic.claude-3-7-sonnet-20250219-v1:0'
 
-set -gx EDITOR "open -t"
+set -gx EDITOR nvim
 
 # Gemini
 set -x GOOGLE_CLOUD_PROJECT lee-byonghun
