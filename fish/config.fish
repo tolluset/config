@@ -43,9 +43,8 @@ alias pi='pnpm install'
 alias pf='p fix'
 #alias ps='pnpm start'
 
-alias pd='podman'
-
-alias pm='podman'
+alias pod='podman'
+alias pods='podman machine start'
 
 alias npx='npx -y'
 
@@ -57,7 +56,7 @@ alias t='npx vitest'
 alias co='concurrently'
 
 # project
-alias dev='co "pnpm --filter browser-app dev:mock" "pnpm --filter browser-app storybook"'
+alias dev='co "pnpm --filter browser-app dev:mock --port 5174" "pnpm --filter browser-app storybook"'
 
 ## mock-backend only app
 alias mk='VITE_API_URL=http://localhost:8080 VITE_MOCK=true pnpm --filter browser-app dev'
@@ -69,8 +68,16 @@ alias mk2='tmux new-session -d -s mock2 "cd ~/workspaces/calta/trancity-nebula-a
 alias cil='time co "turbo run lint" "turbo run spell-check -- --quiet" ".idea/cld"'
 alias cit='time turbo run type-check test --filter browser-app'
 alias ci='time co "turbo run lint" "turbo run spell-check -- --quiet" ".idea/cld" --names "lint,spell,tw" --prefix-colors "cyan,magenta,red"; or true; and time turbo run type-check test --filter browser-app'
+alias pd='pnpm --filter browser-app dev'
+alias pdm='pnpm --filter browser-app dev:mock'
+alias tc='pnpm --filter browser-app type-check'
+alias ts='pnpm --filter browser-app test'
 
-alias fin="p fix && ci"
+# 日本語校正 (jp command)
+function jp
+    claude -p "대답은 한국어로. 以下の日本語を校正してください。問題なければ「✓」だけ、あれば【原文】【校正】【解説】形式で:
+$argv"
+end
 
 # others
 
@@ -78,7 +85,8 @@ alias as="source (which awsume.fish)"
 
 alias ghn="cd ~/workspaces/ && go run gh.go"
 
-function l
+alias l='ls'
+function lll
     set -l cows (cowsay -l | string split ' ' | string match -v '')
     fortune | cowsay -f (random choice $cows) | lolcatjs
 end
@@ -145,13 +153,16 @@ alias avb='av branch'
 
 alias ch='chamgo'
 
-#alias c='set SHELL /opt/homebrew/bin/fish claude --permission-mode plan --dangerously-skip-permissions'
+# alias c='set SHELL /opt/homebrew/bin/fish claude --permission-mode plan --dangerously-skip-permissions'
 function c
     set -lx SHELL /opt/homebrew/bin/fish
     claude --permission-mode plan --dangerously-skip-permissions $argv
 end
 alias cc='ccusage'
 alias cm='claude-monitor'
+
+alias ld='lumen diff --watch'
+alias ldo='lumen diff origin/main..HEAD --stacked --watch'
 
 alias ge='gemini'
 # local
@@ -167,33 +178,41 @@ fish_add_path $PNPM_HOME
 # rust
 fish_add_path ~/.cargo/bin
 
+# go
+fish_add_path ~/go/bin
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
+
+    # PR notifier (5분 간격 반복, 중복 방지)
+    if not pgrep -qf "pr-notifier/index.js"
+        fish -c 'while true; node ~/workspaces/pr-notifier/index.js >> ~/workspaces/pr-notifier/logs/stdout.log 2>&1; sleep 300; end' &
+        disown
+    end
 end
 
 # cargo 별칭 설정
-function ca --description "cargo 별칭"
+function ca
     cargo $argv
 end
 
-function car --description "cargo run 별칭"
+function car
     cargo run $argv
 end
 
-function cab --description "cargo build 별칭"
+function cab
     cargo build $argv
 end
 
-function cac --description "cargo check 별칭"
+function cac
     cargo check $argv
 end
 
-function caa --description "cargo add 별칭"
+function caa
     cargo add $argv
 end
 
-# AWS 및 Claude 설정
-set -x AWS_REGION us-east-1
+# set -x AWS_REGION us-east-1
 #set -x CLAUDE_CODE_USE_BEDROCK 1
 #set -x DISABLE_PROMPT_CACHING 1
 #set -x ANTHROPIC_MODEL 'us.anthropic.claude-3-7-sonnet-20250219-v1:0'
@@ -211,3 +230,32 @@ set -gx OTEL_SDK_DISABLED true
 # activate
 mise activate fish | source
 atuin init fish | source
+
+source /Users/byonghunlee/.config/op/plugins.sh
+
+function npm --wraps npm
+    echo "🚫 npm is deprecated, use pnpm instead" >&2
+    return 1
+end
+
+# function npx --wraps npx
+#     echo "🚫 npx is deprecated, use pnpm dlx instead" >&2
+#     return 1
+# end
+
+function yarn --wraps yarn
+    echo "🚫 yarn is deprecated, use pnpm instead" >&2
+    return 1
+end
+
+# Testcontainers + Podman 설정
+set -gx DOCKER_HOST "unix:///var/folders/lf/q665vfc91rz809wpwpdl7_p00000gn/T/podman/podman-machine-default-api.sock"
+set -gx TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE "/var/run/docker.sock"
+set -gx TESTCONTAINERS_RYUK_DISABLED true
+
+wtp shell-init fish | source
+
+if not pgrep -f "ccb watch" >/dev/null
+    ccb watch &
+    disown
+end

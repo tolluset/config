@@ -1,0 +1,187 @@
+{
+  "env": {
+    "SHELL": "/opt/homebrew/bin/fish"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(npx vitest:*)",
+      "Bash(pnpm test:unit:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm vitest:*)",
+      "Bash(pnpm lint-fix:*)",
+      "Bash(pnpm fix:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(git checkout:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(pnpm type-check:*)",
+      "Bash(say:*)",
+      "Bash(printf \"\\007\")",
+      "Bash(claude /hooks)",
+      "Bash(for sound in /System/Library/Sounds/*.aiff)",
+      "Bash(afplay:*)",
+      "Bash(done)",
+      "mcp__figma-dev-mode-mcp-server__get_image",
+      "Bash(pnpm biome check:*)",
+      "mcp__figma-dev-mode-mcp-server__get_code",
+      "Bash(wc:*)",
+      "Bash(git show:*)",
+      "Bash(pnpm run lint-fix:*)",
+      "Bash(pnpm check:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(git mv:*)",
+      "Bash(git restore:*)",
+      "Bash(cd:*)",
+      "Bash(grep:*)",
+      "Bash(pnpm add:*)",
+      "Bash(node:*)",
+      "Bash(go run:*)",
+      "Bash(go test:*)",
+      "Bash(go mod init:*)",
+      "Bash(make:*)",
+      "Bash(go build:*)",
+      "Bash(./dupclass:*)",
+      "Bash(git reset:*)",
+      "Bash(git rm:*)",
+      "Bash(git diff:*)",
+      "Bash(cif)",
+      "Bash(fish)",
+      "Bash(fish:*)",
+      "Bash(pnpm:*)",
+      "Bash(npx reg-suit run:*)",
+      "Bash(npx reg-cli:*)",
+      "Bash(ci)",
+      "Bash(git rebase:*)",
+      "Bash(npx playwright codegen:*)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_evaluate",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(curl:*)",
+      "Read(/tmp/**)",
+      "Bash(git push:*)",
+      "Bash(cat:*)",
+      "WebSearch",
+      "Bash(find:*)",
+      "Bash(realpath:*)",
+      "Bash(npx tsc:*)",
+      "Bash(podman rm:*)",
+      "Bash(podman ps:*)",
+      "Bash(podman logs:*)",
+      "Bash(podman exec:*)",
+      "Bash(python3:*)",
+      "mcp__serena__check_onboarding_performed",
+      "mcp__serena__onboarding",
+      "mcp__serena__list_dir",
+      "mcp__serena__find_file",
+      "mcp__serena__write_memory",
+      "mcp__serena__activate_project",
+      "mcp__serena__list_memories",
+      "Bash(ln:*)",
+      "mcp__serena__get_symbols_overview",
+      "mcp__serena__search_for_pattern",
+      "mcp__serena__find_symbol",
+      "Bash(p fix:*)",
+      "mcp__serena__insert_before_symbol",
+      "mcp__serena__replace_symbol_body",
+      "mcp__serena__think_about_collected_information",
+      "mcp__serena__find_referencing_symbols",
+      "mcp__serena__insert_after_symbol",
+      "Bash(git log:*)",
+      "mcp__serena__read_memory",
+      "Bash(xargs ls:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh browse:*)",
+      "Bash(gh pr list:*)",
+      "Bash(podman restart:*)",
+      "Bash(podman inspect:*)",
+      "Bash(brew install:*)",
+      "Bash(mkcert:*)",
+      "Bash(git merge-base:*)",
+      "Bash(xargs git log --oneline -1)",
+      "mcp__serena__think_about_task_adherence",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:telemetry.vercel.com)",
+      "mcp__serena__initial_instructions",
+      "WebFetch(domain:tsdown.dev)",
+      "WebFetch(domain:honohub.dev)",
+      "WebFetch(domain:dev.to)",
+      "WebFetch(domain:registry.npmjs.org)"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "dontAsk",
+    "additionalDirectories": [
+      "/System/Library/Sounds"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "go run ~/.claude/statusline.go"
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "learning-output-style@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "feedbackSurveyState": {
+    "lastShownTime": 1753948367677
+  },
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-playwright"
+        ]
+      }
+    }
+  }
+}

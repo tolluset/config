@@ -3,7 +3,7 @@ local act = wezterm.action
 
 -- opacity 프리셋 (0.0 -> 0.6 -> 1.0 순환)
 local opacity_presets = { 0.0, 0.6, 1.0 }
-local current_opacity_index = 2  -- 0.6부터 시작
+local current_opacity_index = 3 -- 1.0부터 시작
 
 local config = {
 	keys = {
@@ -23,8 +23,8 @@ local config = {
 	},
 	color_scheme = "cyberpunk",
 	font = wezterm.font("Hack"),
-	window_background_opacity = 0.6,
-	text_background_opacity = 0.6,
+	window_background_opacity = 1.0,
+	text_background_opacity = 1.0,
 	audible_bell = "SystemBeep",
 }
 
