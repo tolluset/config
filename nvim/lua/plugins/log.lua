@@ -1,3 +1,11 @@
+-- console.info共通設定を全JS/TS filetypeに適用
+local console_info = {
+  left = 'console.info("',
+  right = '")',
+  mid_var = '", ',
+  right_var = ")",
+}
+
 return {
   {
     "andrewferrier/debugprint.nvim",
@@ -6,40 +14,11 @@ return {
         display_counter = false,
         print_tag = "🚀 ",
         filetypes = {
-          ["js"] = {
-            left = 'console.info("',
-            right = '")',
-            mid_var = '", ',
-            right_var = ")",
-          },
-
-          ["javascript"] = {
-            left = 'console.info("',
-            right = '")',
-            mid_var = '", ',
-            right_var = ")",
-          },
-
-          ["javascriptreact"] = {
-            left = 'console.info("',
-            right = '")',
-            mid_var = '", ',
-            right_var = ")",
-          },
-
-          ["typescript"] = {
-            left = 'console.info("',
-            right = '")',
-            mid_var = '", ',
-            right_var = ")",
-          },
-
-          ["typescriptreact"] = {
-            left = 'console.info("',
-            right = '")',
-            mid_var = '", ',
-            right_var = ")",
-          },
+          ["js"] = console_info,
+          ["javascript"] = console_info,
+          ["javascriptreact"] = console_info,
+          ["typescript"] = console_info,
+          ["typescriptreact"] = console_info,
         },
       })
     end,

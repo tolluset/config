@@ -181,36 +181,32 @@ fish_add_path ~/.cargo/bin
 # go
 fish_add_path ~/go/bin
 
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-
-    # PR notifier (5분 간격 반복, 중복 방지)
-    if not pgrep -qf "pr-notifier/index.js"
-        fish -c 'while true; node ~/workspaces/pr-notifier/index.js >> ~/workspaces/pr-notifier/logs/stdout.log 2>&1; sleep 300; end' &
-        disown
-    end
+# ~/.config/fish/config.fish
+if status is-interactive && not pgrep -qf "pr-opener/index.js"
+    fish -c 'while true; node ~/.pr-opener/index.js 2>/dev/null; sleep 300; end' &
+    disown
 end
 
 # cargo 별칭 설정
-function ca
-    cargo $argv
-end
-
-function car
-    cargo run $argv
-end
-
-function cab
-    cargo build $argv
-end
-
-function cac
-    cargo check $argv
-end
-
-function caa
-    cargo add $argv
-end
+# function ca
+#     cargo $argv
+# end
+#
+# function car
+#     cargo run $argv
+# end
+#
+# function cab
+#     cargo build $argv
+# end
+#
+# function cac
+#     cargo check $argv
+# end
+#
+# function caa
+#     cargo add $argv
+# end
 
 # set -x AWS_REGION us-east-1
 #set -x CLAUDE_CODE_USE_BEDROCK 1
@@ -220,12 +216,12 @@ end
 set -gx EDITOR nvim
 
 # Gemini
-set -x GOOGLE_CLOUD_PROJECT lee-byonghun
-set -x GOOGLE_CLOUD_LOCATION us-central1 # e.g., us-central1
-set -x GOOGLE_GENAI_USE_VERTEXAI true
-
-set -gx GEMINI_CLI_TELEMETRY_ENABLED false
-set -gx OTEL_SDK_DISABLED true
+# set -x GOOGLE_CLOUD_PROJECT lee-byonghun
+# set -x GOOGLE_CLOUD_LOCATION us-central1 # e.g., us-central1
+# set -x GOOGLE_GENAI_USE_VERTEXAI true
+#
+# set -gx GEMINI_CLI_TELEMETRY_ENABLED false
+# set -gx OTEL_SDK_DISABLED true
 
 # activate
 mise activate fish | source

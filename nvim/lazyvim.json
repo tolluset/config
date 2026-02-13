@@ -1,7 +1,8 @@
 {
   "extras": [
     "lazyvim.plugins.extras.ai.copilot",
-    "lazyvim.plugins.extras.editor.refactoring"
+    "lazyvim.plugins.extras.editor.refactoring",
+    "lazyvim.plugins.extras.lang.tailwind"
   ],
   "install_version": 7,
   "news": {

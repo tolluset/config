@@ -20,9 +20,14 @@ local config = {
 			mods = "CTRL|SHIFT",
 			action = wezterm.action.EmitEvent("cycle-opacity"),
 		},
+		-- QuickSelect (macOS 입력소스 단축키 충돌 회피)
+		{ key = "Space", mods = "CMD|SHIFT", action = act.QuickSelect },
 	},
 	color_scheme = "cyberpunk",
-	font = wezterm.font("Hack"),
+	font = wezterm.font_with_fallback({
+		"Hack",
+		"MesloLGSDZ Nerd Font",
+	}),
 	window_background_opacity = 1.0,
 	text_background_opacity = 1.0,
 	audible_bell = "SystemBeep",
